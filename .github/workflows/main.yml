@@ -16,11 +16,12 @@ jobs:
           pip install pyyaml
       - name: Run Feed Generator
         run: python feed.py
-      - name: Push Repo
+      - name: List Files
+        run: ls -la
+      - name: Commit Changes
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add .
-          git commit -m "Modified Feed"
+          git add podcast.xml
+          git commit -m "Modified Feed" || echo "No changes to commit"
           git push
-    
